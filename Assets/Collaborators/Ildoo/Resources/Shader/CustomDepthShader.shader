@@ -37,6 +37,9 @@ Shader "Custom/CustomDepthShader"
                 float4 cameraSpacePosition = float4(UnityObjectToViewPos(v.vertex), 1);
                 cameraSpacePosition.z = -cameraSpacePosition.z;
                 o.cameraSpacePosition = cameraSpacePosition;
+				#if UNITY_UV_STARTS_AT_TOP
+				o.cameraSpacePosition.y = 1.0f - o.cameraSpacePosition.y; 
+				#endif
 
                 return o;
             }
@@ -44,20 +47,6 @@ Shader "Custom/CustomDepthShader"
             {
                 return float4(i.cameraSpacePosition.z, 0, 0, 1);
             }
-			// half4 frag(v2f i) : SV_TARGET
-			// {
-			// 	// Use the z component of the camera space position to get the depth
-   //              float depthInMeters = i.cameraSpacePosition.z;
-
-   //              // Convert depth to 0.1 mm units
-   //              uint depthInMM = uint(depthInMeters * 1000.0);
-				
-   //              // Normalize to [0, 1] range for 16-bit storage
-   //              half normalizedDepth = depthInMM / 65535.0;
-				
-   //              // Store normalized value in the red channel
-   //              return half4(depthInMeters, 0, 0, 1);
-			// }
             ENDHLSL
         }
     }

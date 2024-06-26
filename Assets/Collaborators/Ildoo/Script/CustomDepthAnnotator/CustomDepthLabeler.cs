@@ -69,7 +69,7 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
                 return;
             m_AsyncAnnotations.Remove(frameCount);
                 
-            depthData = new NativeArray<ushort>(data.Length, Allocator.TempJob); 
+            depthData = new NativeArray<ushort>(data.Length, Allocator.Temp); 
             ushort forReport  = 0;
             float depthForReport = 0;
             for (int i = 0; i < data.Length; i++) 
@@ -77,16 +77,12 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
                 float depth = data[i].x;  // Assuming depth is stored in the red channel as meters
                 ushort depthValue = (ushort)Mathf.Clamp(depth * 10000f, 0, 65535);  // Convert meters to 0.1 mm units and clamp to 16-bit range
                 depthData[i] = depthValue;
-                if (depthValue >= forReport) forReport = depthValue;
-                if (depth > depthForReport) depthForReport = depth;
             }
 
             var slice = new NativeSlice<ushort>(depthData).SliceConvert<byte>();
             var bytes = new byte[slice.Length];
             slice.CopyTo(bytes);
 
-            Debug.Log(depthForReport);
-            Debug.Log(forReport);
             //Texture2D depthTexture2D = new Texture2D(_depthTexture.width, _depthTexture.height, TextureFormat.R16, false);
             //depthTexture2D.SetPixelData(depthData, 0);
             //depthTexture2D.Apply();
