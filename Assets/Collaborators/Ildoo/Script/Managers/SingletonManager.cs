@@ -7,22 +7,24 @@ using UnityEngine.UIElements;
 
 public class SingletonManager : MonoBehaviour
 {
-    private static SingletonManager instance; 
-    private static CaptureManager captureManager;
+    private static SingletonManager _instance; 
+    private static CaptureManager _captureManager;
+    private static SceneManager _sceneManager;
     
-    public static SingletonManager Instance => instance;
-    public static CaptureManager CaptureManager => captureManager;
+    public static SingletonManager Instance => _instance;
+    public static CaptureManager CaptureManager => _captureManager;
+    public static SceneManager SceneManager => _sceneManager;
 
     private void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Destroy(this); 
             return;
         }
 
         DontDestroyOnLoad(this); 
-        instance = this;
+        _instance = this;
         InitManagers();
     }
 
@@ -30,6 +32,6 @@ public class SingletonManager : MonoBehaviour
     {
         GameObject captureObj = new GameObject() { name = "CaptureManager" };
         captureObj.transform.SetParent(transform);
-        captureManager = captureObj.AddComponent<CaptureManager>();
+        _captureManager = captureObj.AddComponent<CaptureManager>();
     }
 }
