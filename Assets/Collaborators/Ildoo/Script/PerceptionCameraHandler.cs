@@ -93,8 +93,8 @@ public class PerceptionCameraHandler : MonoBehaviour
 
     private void Look()
     {
-        _yRotation += _lookDelta.y * _mouseSensitivity * Time.deltaTime;
-        _xRotation -= _lookDelta.x * _mouseSensitivity * Time.deltaTime;
+        _yRotation += _lookDelta.x * _mouseSensitivity * Time.deltaTime;
+        _xRotation -= _lookDelta.y * _mouseSensitivity * Time.deltaTime;
         _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0);
     }

@@ -9,11 +9,11 @@ public class SingletonManager : MonoBehaviour
 {
     private static SingletonManager _instance; 
     private static CaptureManager _captureManager;
-    private static SceneManager _sceneManager;
+    //private static SceneManager _sceneManager;
     
     public static SingletonManager Instance => _instance;
     public static CaptureManager CaptureManager => _captureManager;
-    public static SceneManager SceneManager => _sceneManager;
+    //public static SceneManager SceneManager => _sceneManager;
 
     private void Awake()
     {
