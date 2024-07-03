@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1895097466834744314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4283639137167555727}
+  - component: {fileID: 220388733108267866}
+  - component: {fileID: 4246842419092103739}
+  m_Layer: 0
+  m_Name: Scenario
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4283639137167555727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895097466834744314}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.08831239, y: 0.86472595, z: -0.16450028, w: -0.4662508}
+  m_LocalPosition: {x: 55.812584, y: 1.1824169, z: 14.303101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 9.557, z: 0}
+--- !u!114 &220388733108267866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895097466834744314}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50076aff0af4515b4422166496fdd5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Randomizers:
+  - rid: 7311881014485451482
+  - rid: 7311881014485450785
+  - rid: 7311881014485450789
+  configuration: {fileID: 0}
+  constants:
+    randomSeed: 539662031
+    startIteration: 0
+    iterationCount: 100
+    totalIterations: 100
+    instanceCount: 1
+    instanceIndex: 0
+  framesPerIteration: 300
+  m_ProgressPercentage: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7311881014485450785
+      type: {class: RigidBodyPlacementRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
+        asm: Assembly-CSharp}
+      data:
+        m_Enabled: 1
+        collapsed: 1
+        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
+        _boundSize: {x: 0, y: 0, z: 0}
+        _rigidTags: []
+        sampleBoundSize:
+          collapsed: 0
+          x:
+            rid: 7311881014485450786
+          y:
+            rid: 7311881014485450787
+          z:
+            rid: 7311881014485450788
+    - rid: 7311881014485450786
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 360
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 7311881014485450787
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 360
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 7311881014485450788
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 360
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 7311881014485450789
+      type: {class: CameraPlacementRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
+        asm: Assembly-CSharp}
+      data:
+        m_Enabled: 1
+        collapsed: 0
+        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
+        _cameraMaxDist: 2.35
+    - rid: 7311881014485451482
+      type: {class: RotationRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
+        asm: Unity.Perception.Runtime}
+      data:
+        m_Enabled: 1
+        collapsed: 0
+        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
+        rotation:
+          collapsed: 0
+          x:
+            rid: 7311881014485451483
+          y:
+            rid: 7311881014485451484
+          z:
+            rid: 7311881014485451485
+    - rid: 7311881014485451483
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 360
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 7311881014485451484
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 360
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 7311881014485451485
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 360
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+--- !u!114 &4246842419092103739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895097466834744314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf495231f13600a41b4831f5021efdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fixedLengthScenrio: {fileID: 0}

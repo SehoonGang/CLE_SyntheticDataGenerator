@@ -15,7 +15,7 @@ namespace UnityEngine.Perception.GroundTruth.Sensors.Channels
     public class CustomRGBChannel : CameraChannel<Color32>
     { 
         /// <inheritdoc/>
-        public override Color clearColor => Color.black;
+        public override Color clearColor => Color.clear;
         ShaderTagId[] shaderPasses = new[]
             {
                 new ShaderTagId("Forward"), // HD Lit shader
@@ -23,10 +23,6 @@ namespace UnityEngine.Perception.GroundTruth.Sensors.Channels
                 new ShaderTagId("SRPDefaultUnlit"), // Cross SRP Unlit shader
                 new ShaderTagId("UniversalForward"), // URP Forward
                 new ShaderTagId("LightweightForward") // LWRP Forward
-            };
-            RenderStateBlock stateBlock = new RenderStateBlock(0)
-            {
-                depthState = new DepthState(true, CompareFunction.LessEqual),
             };
 
         /// <summary>
@@ -37,7 +33,11 @@ namespace UnityEngine.Perception.GroundTruth.Sensors.Channels
         /// <returns>RenderTexture</returns>
         public override RenderTexture CreateOutputTexture(int width, int height)
         {
-            var texture = new RenderTexture(width, height, 32, GraphicsFormat.R8G8B8A8_SRGB) { name = "Custom RGB Channel" };
+            var texture = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32) 
+            { 
+                name = "Custom RGB Channel", 
+                enableRandomWrite = true
+            };
             texture.Create();
             return texture;
         }
@@ -56,15 +56,15 @@ namespace UnityEngine.Perception.GroundTruth.Sensors.Channels
                 RenderUtilities.shaderPassNames, inputs.cullingResults, inputs.camera)
             {
                 renderQueueRange = RenderQueueRange.all, 
-                sortingCriteria = SortingCriteria.CommonOpaque, 
+                sortingCriteria = SortingCriteria.BackToFront, 
                 excludeObjectMotionVectors = false,
                 overrideMaterial = null, 
                 overrideMaterialPassIndex = 0,
-                layerMask = perceptionCamera.layerMask
+                layerMask = -1
             };
             var list = inputs.ctx.CreateRendererList(rendererListDesc); 
             inputs.cmd.SetRenderTarget(renderTarget);
-            inputs.cmd.ClearRenderTarget(true, false, clearColor);
+            inputs.cmd.ClearRenderTarget(true, true, clearColor);
             inputs.cmd.DrawRendererList(list);
         }
     }
