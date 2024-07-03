@@ -14,6 +14,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Formats.Png;
 using System.Runtime.InteropServices.ComTypes;
+using SixLabors.ImageSharp.Processing;
 
 namespace UnityEngine.Perception.GroundTruth.Labelers
 {
@@ -57,10 +58,6 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
             m_AnnotationDefinition = new CustomDepthDefinition(annotationId);
             DatasetCapture.RegisterAnnotationDefinition(m_AnnotationDefinition);
             visualizationEnabled = supportsVisualization;
-            if (!Directory.Exists($"{Application.dataPath}/Test"))
-            {
-                Directory.CreateDirectory($"{Application.dataPath}/Test");
-            }
         }
 
         void OnDepthTextureReadback(int frameCount, NativeArray<float4> data)
@@ -68,48 +65,30 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
             if (!m_AsyncAnnotations.TryGetValue(frameCount, out var future))
                 return;
             m_AsyncAnnotations.Remove(frameCount);
-                
-            depthData = new NativeArray<ushort>(data.Length, Allocator.TempJob); 
-            ushort forReport  = 0;
-            float depthForReport = 0;
+
+            if (depthData.Length <= 0)
+            {
+                depthData = new NativeArray<ushort>(data.Length, Allocator.Persistent);
+            }
+            
             for (int i = 0; i < data.Length; i++) 
             {
                 float depth = data[i].x;  // Assuming depth is stored in the red channel as meters
                 ushort depthValue = (ushort)Mathf.Clamp(depth * 10000f, 0, 65535);  // Convert meters to 0.1 mm units and clamp to 16-bit range
                 depthData[i] = depthValue;
-                if (depthValue >= forReport) forReport = depthValue;
-                if (depth > depthForReport) depthForReport = depth;
             }
 
             var slice = new NativeSlice<ushort>(depthData).SliceConvert<byte>();
             var bytes = new byte[slice.Length];
             slice.CopyTo(bytes);
 
-            Debug.Log(depthForReport);
-            Debug.Log(forReport);
-            //Texture2D depthTexture2D = new Texture2D(_depthTexture.width, _depthTexture.height, TextureFormat.R16, false);
-            //depthTexture2D.SetPixelData(depthData, 0);
-            //depthTexture2D.Apply();
-
-            //byte[] encodedImageData = depthTexture2D.EncodeToPNG();
-            //Debug.Log(encodedImageData.Length);
-            //Debug.Log($"byte Information : {(ushort)encodedImageData[2000]}");
-                //            for (int y = 0; y < _depthTexture.height; y++)
-                //{
-                //    for (int x = 0; x < _depthTexture.width; x++)
-                //    {
-                //        ushort depthValue = depthData[y * _depthTexture.width + x];
-                //        image[x, y] = new L16(depthValue);
-                //    }
-                //}
-
             byte[]? pngEncodedBytes; 
-            using (var image = SixLabors.ImageSharp.Image.LoadPixelData<L16>(bytes, _depthTexture.width, _depthTexture.height))
+            using (var image = Image.LoadPixelData<L16>(bytes, _depthTexture.width, _depthTexture.height))
             {
+                image.Mutate(x => x.Flip(FlipMode.Vertical));
                 using (MemoryStream mStream = new MemoryStream())
                 {
                     image.Save(mStream, new PngEncoder());
-                    string filePath = $"{Application.dataPath}/Test/16bitTest_{frameCount}.png";
                     pngEncodedBytes = mStream.ToArray();
                     //File.WriteAllBytes(filePath, mStream.ToArray());
                 }
@@ -130,20 +109,7 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
                         pngEncodedBytes);
             future.Report(toReport);
 
-            //ImageEncoder.EncodeImage(depthData, _depthTexture.width, _depthTexture.height,
-            //    GraphicsFormat.R16_UNorm, _encodingFormat, encodedImageData =>
-            //    {
-            //        var toReport = new CustomDepthAnnotation(
-            //            m_AnnotationDefinition,
-            //            perceptionCamera.SensorHandle.Id,
-            //            measurementStrategy,
-            //            ImageEncoder.ConvertFormat(_encodingFormat),
-            //            new Vector2(_depthTexture.width, _depthTexture.height),
-            //            encodedImageData.ToArray());
-
-            //        future.Report(toReport);
-            //    }
-            //);
+            
         }
 
         protected override void OnEndRendering(ScriptableRenderContext ctx)
@@ -157,4 +123,36 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
             _depthTexture = null;
         }
     }
+    #region Deprecated 
+    //ImageEncoder.EncodeImage(depthData, _depthTexture.width, _depthTexture.height,
+            //    GraphicsFormat.R16_UNorm, _encodingFormat, encodedImageData =>
+            //    {
+            //        var toReport = new CustomDepthAnnotation(
+            //            m_AnnotationDefinition,
+            //            perceptionCamera.SensorHandle.Id,
+            //            measurementStrategy,
+            //            ImageEncoder.ConvertFormat(_encodingFormat),
+            //            new Vector2(_depthTexture.width, _depthTexture.height),
+            //            encodedImageData.ToArray());
+
+            //        future.Report(toReport);
+            //    }
+            //);
+
+    //Texture2D depthTexture2D = new Texture2D(_depthTexture.width, _depthTexture.height, TextureFormat.R16, false);
+            //depthTexture2D.SetPixelData(depthData, 0);
+            //depthTexture2D.Apply();
+
+            //byte[] encodedImageData = depthTexture2D.EncodeToPNG();
+            //Debug.Log(encodedImageData.Length);
+            //Debug.Log($"byte Information : {(ushort)encodedImageData[2000]}");
+                //            for (int y = 0; y < _depthTexture.height; y++)
+                //{
+                //    for (int x = 0; x < _depthTexture.width; x++)
+                //    {
+                //        ushort depthValue = depthData[y * _depthTexture.width + x];
+                //        image[x, y] = new L16(depthValue);
+                //    }
+                //}
+    #endregion
 }
