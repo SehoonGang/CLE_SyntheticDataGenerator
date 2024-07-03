@@ -11,21 +11,12 @@ public class CanvasHandler : MonoBehaviour
 
     [SerializeField] Canvas _uiCanvas;
     [SerializeField] ScenarioMode _currentMode;
-    [SerializeField] PauseButtonHandler _pauseButtonHandler;
     private void Awake()
     {
         _uiCanvas = GetComponent<Canvas>();
-        _pauseButtonHandler = GetComponent<PauseButtonHandler>();
         _currentMode = ScenarioMode.Stop;
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.Space))
-        {
-            ButtonClick();
-        }
-    }
     public void ScenarioStateChange(ScenarioMode mode)
     {
         switch(mode)
@@ -39,14 +30,6 @@ public class CanvasHandler : MonoBehaviour
                 _uiCanvas.enabled = false; 
                 break;
             default: break;
-        }
-    }
-
-    private void ButtonClick()
-    {
-        if (_currentMode == ScenarioMode.Start)
-        {
-            _pauseButtonHandler.OnButtonClick();
         }
     }
 }

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2189398791256596195}
   - component: {fileID: 484018973022794251}
   - component: {fileID: 794923707173013154}
-  - component: {fileID: 6898816154927458219}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -138,20 +137,7 @@ MonoBehaviour:
   SeparationDistanceInputField: {fileID: 7261329738139751638}
   XPlacement: {fileID: 7798433572867731927}
   YPlacement: {fileID: 2970705107766487197}
---- !u!114 &6898816154927458219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896430867312715939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b669bd3529703844a46be4750dd242c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PauseButton: {fileID: 3716539940299288284}
-  Scenario: {fileID: 0}
+  IsPauseMoving: 1
 --- !u!1001 &6022495455970006712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -364,18 +350,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3716539940299288284 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6919779552342849636, guid: 1f7a7800924c60b40821c618d5442fa8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6022495455970006712}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &4569629029695842699 stripped

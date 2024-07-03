@@ -13,7 +13,6 @@ public class StartButtonHandler : MonoBehaviour
     public Button StartButton;
     public FixedLengthScenario Scenario;
     public TMP_Dropdown Dropdown;
-    public GameObject CurrentScene;
 
     public TMP_InputField XMinValue;
     public TMP_InputField XMaxValue;
@@ -40,13 +39,11 @@ public class StartButtonHandler : MonoBehaviour
 
     private RotationRandomizer _rotationRandomizer;
     private LightRandomizer _lightRandomizer;
-    private ForegroundObjectPlacementRandomizer _foregroundObjectPlacementRadomizer;
 
     void Start()
     {
         _rotationRandomizer = Scenario.GetRandomizer<RotationRandomizer>();
         _lightRandomizer = Scenario.GetRandomizer<LightRandomizer>();
-        _foregroundObjectPlacementRadomizer = Scenario.GetRandomizer<ForegroundObjectPlacementRandomizer>();
         StartButton.onClick.AddListener(OnButtonClick);
     }
 
@@ -88,11 +85,9 @@ public class StartButtonHandler : MonoBehaviour
     {
         if (Scenario != null)
         {
-            LoadScene();
             Scenario.enabled = true;
             SetRotationParameters();
             SetLightParameters();
-            SetForegroundParameters();
         }
     }
 
@@ -120,17 +115,5 @@ public class StartButtonHandler : MonoBehaviour
         _lightRandomizer.color.red = new UniformSampler(float.Parse(RMinValue.text), float.Parse(RMaxValue.text));
         _lightRandomizer.color.green = new UniformSampler(float.Parse(GMinValue.text), float.Parse(GMaxValue.text));
         _lightRandomizer.color.blue = new UniformSampler(float.Parse(BMinValue.text), float.Parse(BMaxValue.text));
-    }
-
-    private void SetForegroundParameters()
-    {
-        _foregroundObjectPlacementRadomizer.depth = float.Parse(DepthInputField.text);
-        _foregroundObjectPlacementRadomizer.separationDistance = float.Parse(SeparationDistanceInputField.text);
-        _foregroundObjectPlacementRadomizer.placementArea = new Vector2(float.Parse(XPlacement.text), float.Parse(YPlacement.text));
-    }
-
-    private void LoadScene()
-    {
-        CurrentScene.SetActive(true);
     }
 }
