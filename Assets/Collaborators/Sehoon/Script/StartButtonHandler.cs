@@ -77,7 +77,7 @@ public class StartButtonHandler : MonoBehaviour
         else
         {
             StartScenario();
-            StartButton.GetComponentInChildren<Text>().text = "PAUSE";
+            //StartButton.GetComponentInChildren<Text>().text = "PAUSE";
         }
     }
 
