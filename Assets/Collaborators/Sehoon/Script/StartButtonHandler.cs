@@ -11,6 +11,7 @@ public class StartButtonHandler : MonoBehaviour
     // Start is called before the first frame update
     public Camera MainCamera;
     public Button StartButton;
+    public Button PauseButton;
     public FixedLengthScenario Scenario;
     public TMP_Dropdown Dropdown;
 
@@ -49,18 +50,15 @@ public class StartButtonHandler : MonoBehaviour
 
     private void Update()
     {
-        Text btnStartText = StartButton.GetComponentInChildren<Text>();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!IsPauseMoving)
             {
                 PauseScenario();
-                btnStartText.text = "START";
             }
             else
             {
                 StartScenario();
-                btnStartText.text = "PAUSE";
             }
             IsPauseMoving = !IsPauseMoving;
         }
@@ -77,7 +75,6 @@ public class StartButtonHandler : MonoBehaviour
         else
         {
             StartScenario();
-            //StartButton.GetComponentInChildren<Text>().text = "PAUSE";
         }
     }
 
