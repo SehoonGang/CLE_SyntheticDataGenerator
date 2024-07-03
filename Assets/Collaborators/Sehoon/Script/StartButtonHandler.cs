@@ -36,6 +36,7 @@ public class StartButtonHandler : MonoBehaviour
     public TMP_InputField SeparationDistanceInputField;
     public TMP_InputField XPlacement;
     public TMP_InputField YPlacement;
+    public bool IsPauseMoving = true;
 
     private RotationRandomizer _rotationRandomizer;
     private LightRandomizer _lightRandomizer;
@@ -49,9 +50,38 @@ public class StartButtonHandler : MonoBehaviour
         StartButton.onClick.AddListener(OnButtonClick);
     }
 
+    private void Update()
+    {
+        Text btnStartText = StartButton.GetComponentInChildren<Text>();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!IsPauseMoving)
+            {
+                PauseScenario();
+                btnStartText.text = "START";
+            }
+            else
+            {
+                StartScenario();
+                btnStartText.text = "PAUSE";
+            }
+            IsPauseMoving = !IsPauseMoving;
+        }
+
+    }
+
     void OnButtonClick()
     {
-        StartScenario();
+        IsPauseMoving = !IsPauseMoving;
+        if (IsPauseMoving)
+        {
+            PauseScenario();
+        }
+        else
+        {
+            StartScenario();
+            StartButton.GetComponentInChildren<Text>().text = "PAUSE";
+        }
     }
 
     private void StartScenario()
@@ -63,6 +93,14 @@ public class StartButtonHandler : MonoBehaviour
             SetRotationParameters();
             SetLightParameters();
             SetForegroundParameters();
+        }
+    }
+
+    private void PauseScenario()
+    {
+        if (Scenario != null)
+        {
+            Scenario.enabled = false;
         }
     }
 

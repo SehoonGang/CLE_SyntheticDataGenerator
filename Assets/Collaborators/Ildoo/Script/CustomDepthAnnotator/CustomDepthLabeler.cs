@@ -29,7 +29,7 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
         public string label => "CustomDepth";
         public string annotationId = "CustomDepth";
         private const LosslessImageEncodingFormat _encodingFormat = LosslessImageEncodingFormat.Png;
-        public DepthMeasurementStrategy measurementStrategy = DepthMeasurementStrategy.Range;
+        public DepthMeasurementStrategy measurementStrategy = DepthMeasurementStrategy.Depth;
         public override string description => "2 Byte Depth Map .png";
 
         public override string labelerId => annotationId;

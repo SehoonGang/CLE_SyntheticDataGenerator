@@ -10,13 +10,12 @@ public class SceneController : MonoBehaviour
     public float moveSpeed = 10f;
     public float rotateSensitivity =1f;
     public Camera MainCamera;
+    public Canvas Canvas;
 
     private float _rotationX = 0f;
     private float _rotationY = 0f;
     private Transform _rotateTarget;
     private GameObject _factoryScene;
-
-    private bool _isPauseMoving = false;
 
     private void Start()
     {
@@ -26,12 +25,8 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            _isPauseMoving = !_isPauseMoving;
-        }
-
-        if (_isPauseMoving)
+        bool isPause = Canvas.GetComponent<StartButtonHandler>().IsPauseMoving;
+        if (!isPause)
         {
             _rotationX = Input.GetAxis("Mouse X") * rotateSensitivity * Time.deltaTime;
             _rotationY = Input.GetAxis("Mouse Y") * rotateSensitivity * Time.deltaTime;
