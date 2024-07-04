@@ -40,59 +40,47 @@ public class StartButtonHandler : MonoBehaviour
 
     private RotationRandomizer _rotationRandomizer;
     private LightRandomizer _lightRandomizer;
+    private bool _isVisibleCanvas = false;
+    private CanvasHandler _canvasHandler;
 
     void Start()
     {
         _rotationRandomizer = Scenario.GetRandomizer<RotationRandomizer>();
         _lightRandomizer = Scenario.GetRandomizer<LightRandomizer>();
         StartButton.onClick.AddListener(OnButtonClick);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!IsPauseMoving)
-            {
-                PauseScenario();
-            }
-            else
-            {
-                StartScenario();
-            }
-            IsPauseMoving = !IsPauseMoving;
-        }
-
+        _canvasHandler = GetComponent<CanvasHandler>();
     }
 
     void OnButtonClick()
     {
-        IsPauseMoving = !IsPauseMoving;
-        if (IsPauseMoving)
-        {
-            PauseScenario();
-        }
-        else
-        {
-            StartScenario();
-        }
+        StartScenario();
     }
 
     private void StartScenario()
     {
+        if (ScenarioManagerHandler.Instance._isSceneReset)
+        {
+            var scenario = Scenario as CustomScenario;
+            scenario.ResetScenario();
+            ScenarioManagerHandler.Instance._isSceneReset = false;
+        }
+
         if (Scenario != null)
         {
             Scenario.enabled = true;
             SetRotationParameters();
             SetLightParameters();
         }
+
+        _isVisibleCanvas = !_isVisibleCanvas;
+        _canvasHandler.ScenarioStateChange(_isVisibleCanvas ? ScenarioMode.Start : ScenarioMode.Stop);
     }
 
-    private void PauseScenario()
+    private void Update()
     {
-        if (Scenario != null)
+        if (Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space))
         {
-            Scenario.enabled = false;
+            _canvasHandler.ScenarioStateChange(ScenarioMode.Stop);
         }
     }
 

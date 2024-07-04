@@ -1,43 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Perception.Randomization.Scenarios;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class PauseButtonHandler : MonoBehaviour
 {
+    public CustomScenario _scenario;
     public Button PauseButton;
-    public FixedLengthScenario Scenario;
-    public bool IsPauseMoving = false;
 
-    void Start()
+    private void Start()
     {
-        PauseButton.onClick.AddListener(OnButtonClick);
+        PauseButton.onClick.AddListener(OnClickResetButton);
     }
 
-    void Update()
+    public async void OnClickResetButton()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            IsPauseMoving = !IsPauseMoving;
-        }
-        if (IsPauseMoving)
-        {
-            PauseScenario();
-        }
-    }
-
-    void OnButtonClick()
-    {
-        PauseScenario();
-        IsPauseMoving = true;
-    }
-
-    private void PauseScenario()
-    {
-        if (Scenario != null)
-        {
-            Scenario.enabled = false;
-        }
+        ScenarioManagerHandler.Instance._isSceneReset = true;
     }
 }
