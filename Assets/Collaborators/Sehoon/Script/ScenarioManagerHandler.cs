@@ -13,6 +13,7 @@ public class ScenarioManagerHandler : MonoBehaviour
     public bool _isSceneStop = false;
     public bool _isSceneReset= false;
     public string _sceneName;
+    public CustomScenario _scenario;
 
     private void Awake()
     {
