@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4283639137167555727}
-  - component: {fileID: 220388733108267866}
-  - component: {fileID: 4246842419092103739}
+  - component: {fileID: 5483714277062594850}
   m_Layer: 0
   m_Name: Scenario
-  m_TagString: Untagged
+  m_TagString: Scenario
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 9.557, z: 0}
---- !u!114 &220388733108267866
+--- !u!114 &5483714277062594850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,13 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895097466834744314}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d50076aff0af4515b4422166496fdd5e, type: 3}
+  m_Script: {fileID: 11500000, guid: ac9e65f967f6d1848ae27a1b472343b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Randomizers:
-  - rid: 7311881014485451482
-  - rid: 7311881014485450785
-  - rid: 7311881014485450789
+  - rid: 1307256744475361342
+  - rid: 1307256744475361346
+  - rid: 1307256744475361350
+  - rid: 1307256744475361359
+  - rid: 1307256744475361365
   configuration: {fileID: 0}
   constants:
     randomSeed: 539662031
@@ -62,24 +63,24 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 7311881014485450785
+    - rid: 1307256744475361342
       type: {class: RigidBodyPlacementRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
         asm: Assembly-CSharp}
       data:
         m_Enabled: 1
-        collapsed: 1
+        collapsed: 0
         <enabledStateCanBeSwitchedByUser>k__BackingField: 1
         _boundSize: {x: 0, y: 0, z: 0}
         _rigidTags: []
         sampleBoundSize:
           collapsed: 0
           x:
-            rid: 7311881014485450786
+            rid: 1307256744475361343
           y:
-            rid: 7311881014485450787
+            rid: 1307256744475361344
           z:
-            rid: 7311881014485450788
-    - rid: 7311881014485450786
+            rid: 1307256744475361345
+    - rid: 1307256744475361343
       type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
         asm: Unity.Perception.Runtime}
       data:
@@ -89,7 +90,7 @@ MonoBehaviour:
         <minAllowed>k__BackingField: 0
         <maxAllowed>k__BackingField: 0
         <shouldCheckValidRange>k__BackingField: 0
-    - rid: 7311881014485450787
+    - rid: 1307256744475361344
       type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
         asm: Unity.Perception.Runtime}
       data:
@@ -99,7 +100,7 @@ MonoBehaviour:
         <minAllowed>k__BackingField: 0
         <maxAllowed>k__BackingField: 0
         <shouldCheckValidRange>k__BackingField: 0
-    - rid: 7311881014485450788
+    - rid: 1307256744475361345
       type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
         asm: Unity.Perception.Runtime}
       data:
@@ -109,15 +110,7 @@ MonoBehaviour:
         <minAllowed>k__BackingField: 0
         <maxAllowed>k__BackingField: 0
         <shouldCheckValidRange>k__BackingField: 0
-    - rid: 7311881014485450789
-      type: {class: CameraPlacementRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
-        asm: Assembly-CSharp}
-      data:
-        m_Enabled: 1
-        collapsed: 0
-        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
-        _cameraMaxDist: 2.35
-    - rid: 7311881014485451482
+    - rid: 1307256744475361346
       type: {class: RotationRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
         asm: Unity.Perception.Runtime}
       data:
@@ -127,12 +120,12 @@ MonoBehaviour:
         rotation:
           collapsed: 0
           x:
-            rid: 7311881014485451483
+            rid: 1307256744475361347
           y:
-            rid: 7311881014485451484
+            rid: 1307256744475361348
           z:
-            rid: 7311881014485451485
-    - rid: 7311881014485451483
+            rid: 1307256744475361349
+    - rid: 1307256744475361347
       type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
         asm: Unity.Perception.Runtime}
       data:
@@ -142,7 +135,7 @@ MonoBehaviour:
         <minAllowed>k__BackingField: 0
         <maxAllowed>k__BackingField: 0
         <shouldCheckValidRange>k__BackingField: 0
-    - rid: 7311881014485451484
+    - rid: 1307256744475361348
       type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
         asm: Unity.Perception.Runtime}
       data:
@@ -152,7 +145,7 @@ MonoBehaviour:
         <minAllowed>k__BackingField: 0
         <maxAllowed>k__BackingField: 0
         <shouldCheckValidRange>k__BackingField: 0
-    - rid: 7311881014485451485
+    - rid: 1307256744475361349
       type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
         asm: Unity.Perception.Runtime}
       data:
@@ -162,16 +155,86 @@ MonoBehaviour:
         <minAllowed>k__BackingField: 0
         <maxAllowed>k__BackingField: 0
         <shouldCheckValidRange>k__BackingField: 0
---- !u!114 &4246842419092103739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895097466834744314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf495231f13600a41b4831f5021efdc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fixedLengthScenrio: {fileID: 0}
+    - rid: 1307256744475361350
+      type: {class: CameraPlacementRandomizer, ns: UnityEngine.Perception.Randomization.Randomizers,
+        asm: Assembly-CSharp}
+      data:
+        m_Enabled: 1
+        collapsed: 0
+        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
+        _cameraMaxDist: 3.45
+    - rid: 1307256744475361359
+      type: {class: LightRandomizer, ns: , asm: Assembly-CSharp}
+      data:
+        m_Enabled: 1
+        collapsed: 0
+        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
+        lightIntensity:
+          collapsed: 0
+          value:
+            rid: 1307256744475361360
+        color:
+          collapsed: 0
+          red:
+            rid: 1307256744475361361
+          green:
+            rid: 1307256744475361362
+          blue:
+            rid: 1307256744475361363
+          alpha:
+            rid: 1307256744475361364
+    - rid: 1307256744475361360
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 1
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 1307256744475361361
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 1
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 1307256744475361362
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 1
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 1307256744475361363
+      type: {class: UniformSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        range:
+          minimum: 0
+          maximum: 1
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 1307256744475361364
+      type: {class: ConstantSampler, ns: UnityEngine.Perception.Randomization.Samplers,
+        asm: Unity.Perception.Runtime}
+      data:
+        value: 1
+        <minAllowed>k__BackingField: 0
+        <maxAllowed>k__BackingField: 0
+        <shouldCheckValidRange>k__BackingField: 0
+    - rid: 1307256744475361365
+      type: {class: RandomizerHandler, ns: , asm: Assembly-CSharp}
+      data:
+        m_Enabled: 1
+        collapsed: 0
+        <enabledStateCanBeSwitchedByUser>k__BackingField: 1
+        _scenario: {fileID: 5483714277062594850}

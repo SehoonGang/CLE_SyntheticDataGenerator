@@ -248,7 +248,7 @@ MonoBehaviour:
   description: 
   captureRgbImages: 1
   firstCaptureFrame: 290
-  captureTriggerMode: 0
+  captureTriggerMode: 1
   manualSensorAffectSimulationTiming: 0
   simulationDeltaTime: 0.0166
   framesBetweenCaptures: 100
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: CameraController
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 8942682043294665900}
 --- !u!114 &4195644709459925922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238fe9b3ec46e224ebc14e3573518317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAutoMode: 0
+  _triggerMode: 0
   _mouseSensitivity: 4.55
   _moveSpeed: 4
-  _inputEnabled: 1
+  _inputEnabled: 0

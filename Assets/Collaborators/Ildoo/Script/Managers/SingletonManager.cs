@@ -9,11 +9,11 @@ public class SingletonManager : MonoBehaviour
 {
     private static SingletonManager _instance; 
     private static CaptureManager _captureManager;
-    private static UIManager _uiManager;
+    private static __UIManager _uiManager;
     
     public static SingletonManager Instance => _instance;
     public static CaptureManager CaptureManager => _captureManager;
-    public static UIManager UIManager => _uiManager;
+    public static __UIManager UIManager => _uiManager;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class SingletonManager : MonoBehaviour
 
         GameObject uiObj = new GameObject() { name = "UIManager"};
         uiObj.transform.SetParent(transform);
-        _uiManager = uiObj.AddComponent<UIManager>();
+        _uiManager = uiObj.AddComponent<__UIManager>();
     }
 
     public void ResetManagers()

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class 
+    __UIManager : MonoBehaviour
 {
     public event Action Initialize;
 
