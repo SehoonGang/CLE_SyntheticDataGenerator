@@ -26,10 +26,7 @@ public class CustomScenario : FixedLengthScenario
     protected override void OnIdle()
     {
         base.OnIdle();
-        if (ScenarioManagerHandler.Instance._isSceneReset)
-        {
-            return;
-        }
+        return;
     }
 
     public void ResetScenario(string scenario)

@@ -11,7 +11,6 @@ public class StartButtonHandler : MonoBehaviour
     // Start is called before the first frame update
     public Camera MainCamera;
     public Button StartButton;
-    public Button PauseButton;
     public CustomScenario _scenario;
 
     public TMP_InputField XMinValue;
@@ -57,10 +56,9 @@ public class StartButtonHandler : MonoBehaviour
 
     private void StartScenario()
     {
-        if (ScenarioManagerHandler.Instance._isSceneReset)
+        if (ScenarioManagerHandler.Instance._isSceneStop)
         {
             _scenario.ResetScenario(ScenarioManagerHandler.Instance._sceneName);
-            ScenarioManagerHandler.Instance._isSceneReset = false;
             ScenarioManagerHandler.Instance._isSceneStop = false;
         }
 

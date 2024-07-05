@@ -1584,7 +1584,8 @@ PrefabInstance:
       value: DropDownBackgroundHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7451443629200141161, guid: 342f7a4462c645644960232a1d1096ff, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 896430867312715939, guid: 342f7a4462c645644960232a1d1096ff,
@@ -5813,6 +5814,7 @@ MonoBehaviour:
   _isSceneStop: 0
   _isSceneReset: 0
   _sceneName: 
+  _scenario: {fileID: 1025764835}
 --- !u!4 &841904403
 Transform:
   m_ObjectHideFlags: 0
