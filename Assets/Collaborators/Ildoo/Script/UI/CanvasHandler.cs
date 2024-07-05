@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Perception.Randomization.Scenarios;
 
 /// <summary>
 /// Implementation Based on Sehoon's UI Panel Controller <see cref="UiPanelController"/>
@@ -24,10 +25,12 @@ public class CanvasHandler : MonoBehaviour
             case ScenarioMode.Stop:
                 _currentMode = ScenarioMode.Stop;
                 _uiCanvas.enabled = true;
+                
                 break;
             case ScenarioMode.Start: 
                 _currentMode = ScenarioMode.Start; 
-                _uiCanvas.enabled = false; 
+                _uiCanvas.enabled = false;
+                SingletonManager.CaptureManager.SimulationPaused = false; 
                 break;
             default: break;
         }
