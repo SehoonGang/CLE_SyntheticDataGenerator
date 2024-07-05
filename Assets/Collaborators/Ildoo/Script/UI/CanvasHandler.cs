@@ -26,6 +26,7 @@ public class CanvasHandler : MonoBehaviour
             ButtonClick();
         }
     }
+
     public void ScenarioStateChange(ScenarioMode mode)
     {
         switch(mode)

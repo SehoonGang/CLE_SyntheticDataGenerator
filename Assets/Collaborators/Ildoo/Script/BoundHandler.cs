@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BoundHandler : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
-        SingletonManager.CaptureManager.Init(gameObject);
+        SingletonManager.CaptureManager.SetBound(gameObject);
     }
 }

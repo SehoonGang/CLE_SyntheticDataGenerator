@@ -27,7 +27,7 @@ public class SelectablePrefabUI : MonoBehaviour
         InitializeData();
     }
 
-    void LoadPrefabs()
+    protected virtual void LoadPrefabs()
     {
         // Load all prefabs from the Resources/Prefab directory
         prefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Prefab/Selectables"));

@@ -10,6 +10,8 @@ public class PerceptionCameraHandler : MonoBehaviour
 {
     private PerceptionCamera _perceptionCamera;
     private PlayerInput _cameraInput;
+    [SerializeField] private bool _isAutoMode;
+    [SerializeField] private CaptureTriggerMode _triggerMode;
     [SerializeField] [Range(0.5f, 10f)] private float _mouseSensitivity;
     [SerializeField] [Range(1f, 10)] private int _moveSpeed;
     private float _yRotation; 
@@ -21,7 +23,7 @@ public class PerceptionCameraHandler : MonoBehaviour
     private Vector3 _elevateValue = new Vector3(0, 1f, 0); 
     
 
-    [SerializeField] private bool _inputEnabled;
+    [SerializeField] private bool _inputEnabled = false;
     private void Awake()
     {
         _cameraInput = GetComponent<PlayerInput>(); 
@@ -30,9 +32,26 @@ public class PerceptionCameraHandler : MonoBehaviour
         SingletonManager.CaptureManager.Camera = camComp;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         SingletonManager.CaptureManager.CaptureChangeEvent += CaptureManager_CaptureChangeEvent;
+        SingletonManager.CaptureManager.CameraModeChangeEvent += CaptureManager_CameraModeChangeEvent;
+    }
+
+    private void CaptureManager_CameraModeChangeEvent(bool isAutoMode)
+    {
+        _inputEnabled = !isAutoMode;
+    }
+
+    private void OnDisable()
+    {
+        SingletonManager.CaptureManager.CaptureChangeEvent -= CaptureManager_CaptureChangeEvent;
+        SingletonManager.CaptureManager.CameraModeChangeEvent -= CaptureManager_CameraModeChangeEvent;
+    }
+
+    private void Start()
+    {
+
     }
 
     private void Update()
@@ -42,16 +61,11 @@ public class PerceptionCameraHandler : MonoBehaviour
         Look(); 
         Move();
     }
+
     private void CaptureManager_CaptureChangeEvent(CaptureTriggerMode obj)
     {
-        if (obj == CaptureTriggerMode.Manual)
-        {
-            _inputEnabled = false; 
-        }
-        else
-        {
-            _inputEnabled = true;
-        }
+        _triggerMode = obj;
+        _perceptionCamera.captureTriggerMode = _triggerMode;
     }
 
     #region Camera Movements
