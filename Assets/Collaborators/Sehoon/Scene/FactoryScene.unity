@@ -1405,6 +1405,11 @@ PrefabInstance:
       objectReference: {fileID: 1025764835}
     - target: {fileID: 794923707173013154, guid: 342f7a4462c645644960232a1d1096ff,
         type: 3}
+      propertyPath: _scenario
+      value: 
+      objectReference: {fileID: 1025764835}
+    - target: {fileID: 794923707173013154, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
       propertyPath: MainCamera
       value: 
       objectReference: {fileID: 891157795}
@@ -1418,6 +1423,11 @@ PrefabInstance:
       propertyPath: _scenario
       value: 
       objectReference: {fileID: 1025764835}
+    - target: {fileID: 2369805132030972435, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_text
+      value: FactoryScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4327482518161023742, guid: 342f7a4462c645644960232a1d1096ff,
         type: 3}
       propertyPath: m_Camera
@@ -1528,10 +1538,63 @@ PrefabInstance:
       propertyPath: _scenario
       value: 
       objectReference: {fileID: 1025764835}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: FactoryScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: Option C
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Image
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1841679679}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChangeValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946508695729628718, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DropDownBackgroundHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 896430867312715939, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1716834091}
+    - targetCorrespondingSourceObject: {fileID: 8891828588667150792, guid: 342f7a4462c645644960232a1d1096ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1841679679}
   m_SourcePrefab: {fileID: 100100000, guid: 342f7a4462c645644960232a1d1096ff, type: 3}
 --- !u!1001 &208189199
 PrefabInstance:
@@ -5749,6 +5812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isSceneStop: 0
   _isSceneReset: 0
+  _sceneName: 
 --- !u!4 &841904403
 Transform:
   m_ObjectHideFlags: 0
@@ -16583,6 +16647,32 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1716834078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 896430867312715939, guid: 342f7a4462c645644960232a1d1096ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 160254850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1716834089 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4327482518161023742, guid: 342f7a4462c645644960232a1d1096ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 160254850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1716834091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716834078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a622d5639c55baf4aad615ef18e572d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiCanvas: {fileID: 1716834089}
+  _currentMode: 0
 --- !u!1 &1728393759
 GameObject:
   m_ObjectHideFlags: 0
@@ -17302,6 +17392,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1841679674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8891828588667150792, guid: 342f7a4462c645644960232a1d1096ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 160254850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1841679679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841679674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a513c452d99c61242a5d93f62409b110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCENE_INDEX: 0
+  _scenario: {fileID: 1025764835}
 --- !u!1 &1867458512
 GameObject:
   m_ObjectHideFlags: 0

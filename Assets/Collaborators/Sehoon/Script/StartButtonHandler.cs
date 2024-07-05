@@ -61,6 +61,7 @@ public class StartButtonHandler : MonoBehaviour
         {
             _scenario.ResetScenario(ScenarioManagerHandler.Instance._sceneName);
             ScenarioManagerHandler.Instance._isSceneReset = false;
+            ScenarioManagerHandler.Instance._isSceneStop = false;
         }
 
         if (_scenario != null)

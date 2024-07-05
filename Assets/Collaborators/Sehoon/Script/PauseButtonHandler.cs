@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class PauseButtonHandler : MonoBehaviour
 {
-    public CustomScenario _scenario;
     public Button PauseButton;
 
     private void Start()
@@ -18,7 +17,9 @@ public class PauseButtonHandler : MonoBehaviour
 
     public async void OnClickResetButton()
     {
-        Debug.Log("RESET");
-        ScenarioManagerHandler.Instance._isSceneReset = true;
+        if (ScenarioManagerHandler.Instance._scenario.state == ScenarioBase.State.Idle)
+        {
+            ScenarioManagerHandler.Instance._isSceneReset = true;
+        }
     }
 }
