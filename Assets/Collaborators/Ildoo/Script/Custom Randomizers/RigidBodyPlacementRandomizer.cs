@@ -25,20 +25,36 @@ namespace UnityEngine.Perception.Randomization.Randomizers
             y = new UniformSampler(0, 360),
             z = new UniformSampler(0, 360)
         };
+
+        protected override void OnEnable()
+        {
+            SingletonManager.CaptureManager.PauseResumeEvent += PauseResume;
+        }
+
+        protected override void OnDisable()
+        {
+            SingletonManager.CaptureManager.PauseResumeEvent -= PauseResume;
+        }
+
         protected override void OnScenarioStart()
         {
             _boundSize = SingletonManager.CaptureManager.BoundSize;
-            SetBoundSampler(_boundSize);
+            Vector3 boundCentreOffset = SingletonManager.CaptureManager.BoundCentreOffset;
+            Vector3 renderBoundCentreOffset = SingletonManager.CaptureManager.RenderBoundCentreOffset;
+            SetBoundSampler(_boundSize, boundCentreOffset, renderBoundCentreOffset);
         }
 
-        public void SetBoundSampler(Vector3 bound)
+        public void SetBoundSampler(Vector3 bound, Vector3 boundCentreOffset, Vector3 renderBoundCentreOffset)
         {
             Debug.Log($"Bound Limits SET: {bound}");
             sampleBoundSize = new Vector3Parameter
             {
-                x = new UniformSampler(0, _boundSize.x), 
-                y = new UniformSampler(1.5f, _boundSize.y), 
-                z = new UniformSampler(0, _boundSize.z)
+                x = new UniformSampler(boundCentreOffset.x - bound.x / 2 + renderBoundCentreOffset.x, 
+                boundCentreOffset.x + bound.x / 2 + renderBoundCentreOffset.x),
+                z = new UniformSampler(boundCentreOffset.z - bound.z / 2 + renderBoundCentreOffset.z, 
+                boundCentreOffset.z + bound.z / 2 + renderBoundCentreOffset.z),
+
+                y = new UniformSampler(1.5f, _boundSize.y) // TODO: MAke Flexible Y coordinate changes
             };
         }
 
@@ -49,9 +65,8 @@ namespace UnityEngine.Perception.Randomization.Randomizers
             foreach (var tag in _rigidTags)
             {
                 var newVectorVal = sampleBoundSize.Sample();
-                Debug.Log(newVectorVal);
                 tag.RigidBody.MovePosition(newVectorVal);
-                tag.Init();
+                tag.Init(this);
             }   
         }
 
@@ -62,6 +77,25 @@ namespace UnityEngine.Perception.Randomization.Randomizers
                 tag.SettleRigidBody();
             }
             _rigidTags = null;
+        }
+
+        private void PauseResume(bool isPause)
+        {
+            if (_rigidTags == null) return;
+            if (isPause)
+            {
+                foreach (var tag in _rigidTags)
+                {
+                    tag.PauseResume(true);
+                }
+            }
+            else
+            {
+                foreach (var tag in _rigidTags)
+                {
+                    tag.PauseResume(false);
+                }
+            }
         }
     }
 }

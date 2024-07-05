@@ -27,8 +27,8 @@ namespace UnityEngine.Perception.Randomization.Randomizers
 
         protected override void OnAwake()
         {
-            var placementObjects = tagManager.Query<RigidBodyPlacementRandomizerTag>().ToList();
         }
+
         protected override void OnIterationStart()
         {
             var rigidBodies = tagManager.Query<RigidBodyPlacementRandomizerTag>().ToList();
@@ -36,5 +36,11 @@ namespace UnityEngine.Perception.Randomization.Randomizers
             float camDist = Random.Range(_cameraMinDist, _cameraMaxDist);
             SingletonManager.CaptureManager.SetForCapture(rigidBodies[randomIndex], camDist);
         }
+
+        protected override void OnIterationEnd()
+        {
+            SingletonManager.CaptureManager.ResetCamera();
+        }
+        
     }
 }

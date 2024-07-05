@@ -74,7 +74,7 @@ namespace UnityEngine.Perception.GroundTruth.Labelers
             for (int i = 0; i < data.Length; i++) 
             {
                 float depth = data[i].x;  // Assuming depth is stored in the red channel as meters
-                ushort depthValue = (ushort)Mathf.Clamp(depth * 10000f, 0, 65535);  // Convert meters to 0.1 mm units and clamp to 16-bit range
+                ushort depthValue = (ushort)Mathf.Clamp(depth * 1000f, 0, 65535);  // Convert meters to 0.1 mm units and clamp to 16-bit range
                 depthData[i] = depthValue;
             }
 
