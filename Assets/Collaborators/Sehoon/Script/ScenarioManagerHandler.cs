@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Perception.Randomization.Scenarios;
 
@@ -11,6 +12,7 @@ public class ScenarioManagerHandler : MonoBehaviour
 
     public bool _isSceneStop = false;
     public bool _isSceneReset= false;
+    public string _sceneName;
 
     private void Awake()
     {

@@ -32,15 +32,8 @@ public class CustomScenario : FixedLengthScenario
         }
     }
 
-    public void ResetScenario()
+    public void ResetScenario(string scenario)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(scenario);
     }
-
-    protected override void OnStart()
-    {
-        base.OnStart();
-        Debug.Log("START START START START");
-    }
-
   }

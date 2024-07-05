@@ -18,6 +18,7 @@ public class PauseButtonHandler : MonoBehaviour
 
     public async void OnClickResetButton()
     {
+        Debug.Log("RESET");
         ScenarioManagerHandler.Instance._isSceneReset = true;
     }
 }

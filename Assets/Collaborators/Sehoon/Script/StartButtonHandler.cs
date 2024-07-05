@@ -12,8 +12,7 @@ public class StartButtonHandler : MonoBehaviour
     public Camera MainCamera;
     public Button StartButton;
     public Button PauseButton;
-    public FixedLengthScenario Scenario;
-    public TMP_Dropdown Dropdown;
+    public CustomScenario _scenario;
 
     public TMP_InputField XMinValue;
     public TMP_InputField XMaxValue;
@@ -45,8 +44,8 @@ public class StartButtonHandler : MonoBehaviour
 
     void Start()
     {
-        _rotationRandomizer = Scenario.GetRandomizer<RotationRandomizer>();
-        _lightRandomizer = Scenario.GetRandomizer<LightRandomizer>();
+        _rotationRandomizer = _scenario.GetRandomizer<RotationRandomizer>();
+        _lightRandomizer = _scenario.GetRandomizer<LightRandomizer>();
         StartButton.onClick.AddListener(OnButtonClick);
         _canvasHandler = GetComponent<CanvasHandler>();
     }
@@ -60,14 +59,13 @@ public class StartButtonHandler : MonoBehaviour
     {
         if (ScenarioManagerHandler.Instance._isSceneReset)
         {
-            var scenario = Scenario as CustomScenario;
-            scenario.ResetScenario();
+            _scenario.ResetScenario(ScenarioManagerHandler.Instance._sceneName);
             ScenarioManagerHandler.Instance._isSceneReset = false;
         }
 
-        if (Scenario != null)
+        if (_scenario != null)
         {
-            Scenario.enabled = true;
+            _scenario.enabled = true;
             SetRotationParameters();
             SetLightParameters();
         }
